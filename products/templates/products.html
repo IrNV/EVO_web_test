@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/products/static/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="/products/static/js/test.js"></script>
+    <title>Users</title>
+
+</head>
+<body>
+    <a href="/"> вернутся назад</a>
+    {% for product in products %}
+        <p class="{{class_name}}">{{product}}</p>
+        <img class="{{class_name}}" src="/products/static/images/{{product.name}}.jpg" alt={{product.name}} width="200" height="200"/>
+    {% endfor %}
+</body>
+</html>
