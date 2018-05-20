@@ -1,0 +1,9 @@
+body {
+    background-image: url("/static/images/background_img.jpg");
+}
+.menu {
+    margin-left: 25%;
+}
+.menu p {
+    margin-left: 5%;
+}

@@ -4,9 +4,8 @@
 названии продукта
  */
 $(document).ready(function () {
-    // alert("Page is loaded")
     $( 'body' ).on( 'click', 'img', function () {
-        // alert($(this).attr("class"))
+        alert("Вы сделали клик по " + $(this).attr("alt"))
         var type = $(this).attr("class")
         var name = $(this).attr("alt")
         $.ajax({

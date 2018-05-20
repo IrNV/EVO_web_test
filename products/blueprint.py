@@ -1,12 +1,12 @@
 from flask import Blueprint, render_template, request
-from models import TV, Fridge
-from app import db
 
+from app import db
+from products.models import TV, Fridge
 
 products = Blueprint('products ', __name__, template_folder='templates', static_folder='static')
 
 
-def sort(data, requset):
+def sort(data):
     # Сортируем по параметру выбранном пользователем
     if request.form["sort"] == "click_amount":
         data.sort(key=lambda fridge: fridge.click_count, reverse=True)
@@ -19,7 +19,7 @@ def tvs_page():
     all_tvs = TV.query.all()
 
     if "sort" in request.form:
-        sort(all_tvs, request)
+        sort(all_tvs)
 
     return render_template("products.html", products=all_tvs, type="tvs")
 
@@ -29,7 +29,7 @@ def fridges_page():
     all_fridges = Fridge.query.all()
 
     if "sort" in request.form:
-        sort(all_fridges, request)
+        sort(all_fridges)
 
     return render_template("products.html", products=all_fridges, type="fridges")
 
@@ -37,7 +37,7 @@ def fridges_page():
 @products.route('/click/<data>')
 def product_click(data):
     """
-    Функция вызываемая, когжа AJAX делает запрос, сигнализируя, что был сделан клик
+    Функция вызываемая, когда AJAX делает запрос, сигнализируя, что был сделан клик
     :param data: type=name, принимает тип продукта и его название в виде параметра
     """
     data_split = data.split("=")

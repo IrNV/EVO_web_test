@@ -5,24 +5,29 @@
     <link rel="stylesheet" href="/products/static/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="/products/static/js/test.js"></script>
-    <title>Users</title>
+    <title>Товары</title>
 
 </head>
 <body>
     <a href="/"> вернутся назад</a>
 
-    <form name="test" method="post" action="/products/{{type}}">
-        <p><B>Выбирите по какому параметру сортировать</b></p>
-        <p>
-            <input type="radio" name="sort" value="alphabet">По алфавиту
-            <input type="radio" name="sort" value="click_amount">По количеству кликов
-        </p>
-        <p><input type="submit" value="Отсортировать">
-    </form>
+    <div class="page_content">
+        <form name="test" method="post" action="/products/{{type}}">
+            <p><B>Выбирите по какому параметру сортировать</b></p>
+            <p><input type="radio" name="sort" value="alphabet">По алфавиту </p>
+            <p><input type="radio" name="sort" value="click_amount">По количеству кликов</p>
+            <p class="sort_button"><input type="submit" value="Отсортировать">
+        </form>
 
-    {% for product in products %}
-        <p class="{{class_name}}">{{product}}</p>
-        <img class="{{class_name}}" src="/products/static/images/{{product.name}}.jpg" alt={{product.name}} width="200" height="200"/>
-    {% endfor %}
+        {% for product in products %}
+            <div class="product">
+                <p class="{{type}}">Название: {{product}}</p>
+                <p>Параметры: ...</p>
+                <p>Описание: ... </p>
+                <img class="{{type}}" src="/products/static/images/{{product.name}}.png" alt={{product.name}} width="300" height="200"/>
+            </div>
+        {% endfor %}
+    </div>
+
 </body>
 </html>

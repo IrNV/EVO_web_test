@@ -1,7 +1,22 @@
 body{
-    background-color: darkgray;
+    background-image: url("/static/images/background_img.jpg");
+}
+.page_content {
+    margin-left: 35%;
+}
+.sort_button {
+    margin-left: 15%;
+}
+.product {
+    width: 50%;
+    margin-left: 0%;
+    margin-bottom: 50px;
+    border-style: solid;
+
 }
 
-.user {
-    color: slateblue;
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
