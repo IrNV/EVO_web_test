@@ -6,7 +6,7 @@
 $(document).ready(function () {
     // alert("Page is loaded")
     $( 'body' ).on( 'click', 'img', function () {
-        alert($(this).attr("class"))
+        // alert($(this).attr("class"))
         var type = $(this).attr("class")
         var name = $(this).attr("alt")
         $.ajax({
@@ -14,5 +14,7 @@ $(document).ready(function () {
             url:"/products/click/"+type+"="+name,
         });
     });
+
+
 }
 )
