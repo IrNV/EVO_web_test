@@ -12,7 +12,7 @@ $(document).ready(function () {
             type: "POST",
             url:"/products/click",
             data: JSON.stringify(click_info),
-            contentType: "/products/click/json",
+            contentType: "/products/click/json; charset=utf-8",
             success: function () {
                 window.location.reload(true)
             }
