@@ -9,17 +9,21 @@ products = Blueprint('products', __name__, template_folder='templates', static_f
 def sort(data):
     # Сортируем по параметру выбранном пользователем
     if request.form["sort"] == "click_amount":
-        data.sort(key=lambda fridge: fridge.click_count, reverse=True)
+        data.sort(key=lambda product: product.click_count, reverse=True)
     else:
-        data.sort(key=lambda fridge: fridge.name)
+        data.sort(key=lambda product: product.name)
 
 
 @products.route("/tvs", methods=['GET', 'POST'])
 def tvs_page():
     all_tvs = TV.query.all()
 
+    # Проверяем есть ли запрос на сортировку с формы
     if "sort" in request.form:
         sort(all_tvs)
+    else:
+        # Если с формы запрос не отправлен, то сортируем по имени
+        all_tvs.sort(key=lambda tv: tv.name)
 
     return render_template("products.html", products=all_tvs, type="tvs")
 
@@ -28,8 +32,12 @@ def tvs_page():
 def fridges_page():
     all_fridges = Fridge.query.all()
 
+    # Проверяем есть ли запрос на сортировку с формы
     if "sort" in request.form:
         sort(all_fridges)
+    else:
+        # Если с формы запрос не отправлен, то сортируем по имени
+        all_fridges.sort(key=lambda fridges: fridges.name)
 
     return render_template("products.html", products=all_fridges, type="fridges")
 
