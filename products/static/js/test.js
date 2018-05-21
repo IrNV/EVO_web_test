@@ -13,7 +13,9 @@ $(document).ready(function () {
             url:"/products/click",
             data: JSON.stringify(click_info),
             contentType: "/products/click/json",
-            success: alert("Вы сделали клик по " + $(this).attr("alt"))
+            success: function () {
+                window.location.reload(true)
+            }
         });
     });
 

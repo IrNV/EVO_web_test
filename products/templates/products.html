@@ -24,6 +24,7 @@
                 <p class="{{type}}">Название: {{product}}</p>
                 <p>Параметры: ...</p>
                 <p>Описание: ... </p>
+                <p>Количество кликов: {{product.click_count }}</p>
                 <img class="{{type}}" src="/products/static/images/{{product.name}}.png" alt={{product.name}} width="300" height="200"/>
             </div>
         {% endfor %}
