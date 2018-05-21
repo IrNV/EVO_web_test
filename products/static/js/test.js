@@ -5,12 +5,15 @@
  */
 $(document).ready(function () {
     $( 'body' ).on( 'click', 'img', function () {
-        alert("Вы сделали клик по " + $(this).attr("alt"))
-        var type = $(this).attr("class")
-        var name = $(this).attr("alt")
+        var type = $(this).attr("class");
+        var name = $(this).attr("alt");
+        var click_info = {'type': type, 'name': name};
         $.ajax({
-            type: "GET",
-            url:"/products/click/"+type+"="+name,
+            type: "POST",
+            url:"/products/click",
+            data: JSON.stringify(click_info),
+            contentType: "/products/click/json",
+            success: alert("Вы сделали клик по " + $(this).attr("alt"))
         });
     });
 

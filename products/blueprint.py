@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request
 from app import db
 from products.models import TV, Fridge
 
-products = Blueprint('products ', __name__, template_folder='templates', static_folder='static')
+products = Blueprint('products', __name__, template_folder='templates', static_folder='static')
 
 
 def sort(data):
@@ -34,25 +34,22 @@ def fridges_page():
     return render_template("products.html", products=all_fridges, type="fridges")
 
 
-@products.route('/click/<data>')
-def product_click(data):
+@products.route('/click', methods=['POST'])
+def product_click():
     """
     Функция вызываемая, когда AJAX делает запрос, сигнализируя, что был сделан клик
-    :param data: type=name, принимает тип продукта и его название в виде параметра
     """
-    data_split = data.split("=")
-    TYPE = 0  # константа типа продукта
-    NAME = 1  # константа названия продукта
+    data = eval(request.data)
 
-    if data_split[TYPE] == "fridges":
-        product = Fridge.query.filter(Fridge.name == data_split[NAME]).first()
+    if data['type'] == "fridges":
+        product = Fridge.query.filter(Fridge.name == data['name']).first()
         all_products = Fridge.query.all()
     else:
-        product = TV.query.filter(TV.name == data_split[NAME]).first()
+        product = TV.query.filter(TV.name == data['name']).first()
         all_products = TV.query.all()
 
     product.click_count += 1
     db.session.commit()
 
-    return render_template("products.html", products=all_products, type=data_split[TYPE])
+    return render_template("products.html", products=all_products, type=data['type'])
 
